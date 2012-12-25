@@ -4,6 +4,8 @@ package Entidade.Conta;
 
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +26,20 @@ public class Imposto extends Conta implements Serializable {
     private Long id;
     private float valor;
     private float aliquota;
+
+    public Imposto() {
+    }
+
+    public Imposto(String nome, String obs, Calendar criacao, List<Lancamento> lancamentos, float valor, float aliquota) {
+        this.valor = valor;
+        this.aliquota = aliquota;
+        super.setNome(nome);
+        super.setObs(obs);
+        super.setCriacao(criacao);
+        super.setLancamentos(lancamentos);
+    }
+    
+    
 
     public Long getId() {
         return id;

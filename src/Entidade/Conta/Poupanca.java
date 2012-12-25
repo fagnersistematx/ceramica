@@ -4,6 +4,8 @@ package Entidade.Conta;
 
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,6 +24,21 @@ public class Poupanca extends Investimento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    public Poupanca() {
+    }
+
+    public Poupanca(float iof, float cpmf, float saldo_original, float saldo_atualizado, String nm_conta, String nome, String obs, Calendar criacao, List<Lancamento> lancamentos) {
+        this.setIof(iof);
+        this.setCpmf(cpmf);
+        this.setSaldo_original(saldo_original);
+        this.setSaldo_atualizado(saldo_atualizado);
+        this.setNm_conta(nm_conta);
+        this.setNome(nome);
+        this.setObs(obs);
+        this.setCriacao(criacao);
+        this.setLancamentos(lancamentos);
+    }
 
     public Long getId() {
         return id;
