@@ -11,8 +11,8 @@
 package GUI;
 
 import Controler.ControleServico;
-import Controler.ControleUsuario;
-import Entidade.Usuario;
+import Controler.FuncionarioController;
+import Entidade.Funcionario;
 import Util.Config;
 import Util.JCalendar;
 import Util.impressao.Impressao;
@@ -26,7 +26,7 @@ import javax.swing.JOptionPane;
 public class CadastrarServico extends javax.swing.JDialog {
 
     private ControleServico controlerServico;
-    private ControleUsuario controleUsuario;
+    private FuncionarioController controleUsuario;
     private Impressao impressao;
     private JDialog btVoltar;
     private JCalendar jcalendar;
@@ -36,7 +36,7 @@ public class CadastrarServico extends javax.swing.JDialog {
         this.btVoltar = btVoltar;
         impressao = new Impressao();
         controlerServico = new ControleServico();
-        controleUsuario = new ControleUsuario();
+        controleUsuario = new FuncionarioController();
         initComponents();
         this.preencherCbUsuario();
         tfCliente.setText(Config.getCliente().getNome());
@@ -297,7 +297,7 @@ private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
     private void preencherCbUsuario() {
         try {
-            for (Usuario u : controleUsuario.converte()) {
+            for (Funcionario u : controleUsuario.converte()) {
                 cbResponsavel.addItem(u.getNome());
             }
         } catch (Exception erro) {

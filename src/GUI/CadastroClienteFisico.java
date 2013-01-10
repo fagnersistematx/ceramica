@@ -1,16 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/*
- * CadastroCliente.java
- *
- * Created on 31/05/2012, 22:44:04
- */
 package GUI;
 
 import Controler.ControleCliente;
+import java.awt.KeyboardFocusManager;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,10 +17,11 @@ public class CadastroClienteFisico extends javax.swing.JDialog {
     public CadastroClienteFisico(java.awt.Frame parent) {
         super(parent);
         initComponents();
-        //ConfLook.getInstance().Look();
         this.controleCliente = new ControleCliente();
         super.setSize(843, 607);
         this.setLocationRelativeTo(null); 
+        tfComplemento.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        tfOBSCliente.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
     }
 
     @SuppressWarnings("unchecked")

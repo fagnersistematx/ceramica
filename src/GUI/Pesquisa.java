@@ -12,8 +12,8 @@ package GUI;
 
 import Controler.ControleCliente;
 import Entidade.Cliente;
-import GUI.Atualizar.AtualizarClienteJuridico;
 import GUI.Atualizar.AtualizarClienteFisico;
+import GUI.Atualizar.AtualizarClienteJuridico;
 import Util.Config;
 import gerenciadorclientes.GerenciadorClientesApp;
 import java.awt.KeyboardFocusManager;

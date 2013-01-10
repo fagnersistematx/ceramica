@@ -11,7 +11,7 @@
 package GUI;
 
 import Controler.ControleConfiguracao;
-import Entidade.Usuario;
+import Entidade.Funcionario;
 import Util.ConfLook;
 import Util.Config;
 import Util.DAO;
@@ -159,12 +159,12 @@ private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     private boolean converteValidarSenha() {
         List<Object> objects = new ArrayList<Object>();
-        objects = dao.findObjectEntities(Usuario.class);
+        objects = dao.findObjectEntities(Funcionario.class);
         Iterator i = objects.iterator();
 
         while (i.hasNext()) {
             try {
-                Usuario c = (Usuario) i.next();
+                Funcionario c = (Funcionario) i.next();
                 if (c.getLogin().equalsIgnoreCase(tfNome.getText()) && c.getSenha().equalsIgnoreCase(tfSenha.getText())) {
                     Config.setUsuario(c);
                     return true;

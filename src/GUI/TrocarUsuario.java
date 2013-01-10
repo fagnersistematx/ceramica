@@ -10,7 +10,7 @@
  */
 package GUI;
 
-import Entidade.Usuario;
+import Entidade.Funcionario;
 import Util.Config;
 import Util.DAO;
 import java.util.ArrayList;
@@ -147,12 +147,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private boolean converteValidarSenha() {
         List<Object> objects = new ArrayList<Object>();
-        objects = dao.findObjectEntities(Usuario.class);
+        objects = dao.findObjectEntities(Funcionario.class);
         Iterator i = objects.iterator();
 
         while (i.hasNext()) {
             try {
-                Usuario c = (Usuario) i.next();
+                Funcionario c = (Funcionario) i.next();
                 if (c.getLogin().equalsIgnoreCase(tfUsuario.getText()) && c.getSenha().equalsIgnoreCase(tfSenha.getText())) {
                     Config.setUsuario(c);
                     return true;

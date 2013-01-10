@@ -11,6 +11,8 @@
 package GUI;
 
 import Controler.ControleCliente;
+import java.awt.KeyboardFocusManager;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +29,8 @@ public class CadastroClienteJuridico extends javax.swing.JDialog {
         initComponents();
         this.controleCliente = new ControleCliente();
         super.setSize(843, 607);
+        tfComplemento.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        tfOBSCliente.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
     }
 
     @SuppressWarnings("unchecked")
