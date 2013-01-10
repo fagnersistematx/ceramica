@@ -1,7 +1,6 @@
 
 package Controler.conta;
 
-import Entidade.Conta.Exception.InvestimentoFundoException;
 import Entidade.Conta.Exception.InvestimentoPoupancaException;
 import Entidade.Conta.Lancamento;
 import Entidade.Conta.Poupanca;
