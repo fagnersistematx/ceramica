@@ -31,19 +31,6 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+T"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem15.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="jMenuItem15.text"/>
-                <Property name="name" type="java.lang.String" value="jMenuItem15" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem15ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem16">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -55,6 +42,19 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem16ActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem15">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+T"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem15.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem15.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem15" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem15ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
@@ -170,67 +170,150 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu2">
+        <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jMenu2.icon"/>
-            <Property name="mnemonic" type="int" value="98"/>
-            <Property name="text" type="java.lang.String" resourceKey="jMenu2.text"/>
-            <Property name="name" type="java.lang.String" value="jMenu2" noResource="true"/>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="jMenu5.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="jMenu5.text"/>
+            <Property name="name" type="java.lang.String" value="jMenu5" noResource="true"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jtBackupManual">
+            <Menu class="javax.swing.JMenu" name="jMenu8">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+M"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="jtBackupManual.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="jtBackupManual.text"/>
-                <Property name="name" type="java.lang.String" value="jtBackupManual" noResource="true"/>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenu8.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenu8.text"/>
+                <Property name="name" type="java.lang.String" value="jMenu8" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="menuFornecedorFisico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="menuFornecedorFisico.text"/>
+                    <Property name="name" type="java.lang.String" value="menuFornecedorFisico" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuFornecedorFisicoActionPerformed"/>
+                  </Events>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="menuFornecedoJuridico">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="menuFornecedoJuridico.text"/>
+                    <Property name="name" type="java.lang.String" value="menuFornecedoJuridico" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuFornecedoJuridicoActionPerformed"/>
+                  </Events>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="menuPesquisarFornecedor">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="menuPesquisarFornecedor.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="menuPesquisarFornecedor.text"/>
+                <Property name="name" type="java.lang.String" value="menuPesquisarFornecedor" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtBackupManualActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupAuto">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+A"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupAuto.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="MenuBackupAuto.text"/>
-                <Property name="name" type="java.lang.String" value="MenuBackupAuto" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupAutoActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupRestaurar">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+R"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupRestaurar.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="MenuBackupRestaurar.text"/>
-                <Property name="name" type="java.lang.String" value="MenuBackupRestaurar" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupRestaurarActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupHistorico">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+H"/>
-                </Property>
-                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupHistorico.icon"/>
-                <Property name="text" type="java.lang.String" resourceKey="MenuBackupHistorico.text"/>
-                <Property name="name" type="java.lang.String" value="MenuBackupHistorico" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupHistoricoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPesquisarFornecedorActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="menuListaContas">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="menuListaContas.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="menuListaContas.text"/>
+            <Property name="name" type="java.lang.String" value="menuListaContas" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuListaContasActionPerformed"/>
+          </Events>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuDespesa">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="menuDespesa.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="menuDespesa.text"/>
+                <Property name="name" type="java.lang.String" value="menuDespesa" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuDespesaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <Menu class="javax.swing.JMenu" name="jMenu7">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jMenu7.text"/>
+                <Property name="name" type="java.lang.String" value="jMenu7" noResource="true"/>
+              </Properties>
+              <SubComponents>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem20">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem20.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem20" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem13.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem13" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem21">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem21.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem21" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem9.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem9" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem24">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem24.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem24" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+                <MenuItem class="javax.swing.JMenuItem" name="jMenuItem14">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jMenuItem14.text"/>
+                    <Property name="name" type="java.lang.String" value="jMenuItem14" noResource="true"/>
+                  </Properties>
+                </MenuItem>
+              </SubComponents>
+            </Menu>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuListaDeConta">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuListaDeConta.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="MenuListaDeConta.text"/>
+                <Property name="name" type="java.lang.String" value="MenuListaDeConta" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuListaDeContaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuReceita">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuReceita.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="MenuReceita.text"/>
+                <Property name="name" type="java.lang.String" value="MenuReceita" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuReceitaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem23">
+              <Properties>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jMenuItem23.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jMenuItem23.text"/>
+                <Property name="name" type="java.lang.String" value="jMenuItem23" noResource="true"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu9">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jMenu9.text"/>
+            <Property name="name" type="java.lang.String" value="jMenu9" noResource="true"/>
+          </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu6">
           <Properties>
@@ -320,6 +403,68 @@
             </MenuItem>
           </SubComponents>
         </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="jMenu2.icon"/>
+            <Property name="mnemonic" type="int" value="98"/>
+            <Property name="text" type="java.lang.String" resourceKey="jMenu2.text"/>
+            <Property name="name" type="java.lang.String" value="jMenu2" noResource="true"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupAuto">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+A"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupAuto.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="MenuBackupAuto.text"/>
+                <Property name="name" type="java.lang.String" value="MenuBackupAuto" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupAutoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jtBackupManual">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+M"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="jtBackupManual.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="jtBackupManual.text"/>
+                <Property name="name" type="java.lang.String" value="jtBackupManual" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtBackupManualActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupHistorico">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+H"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupHistorico.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="MenuBackupHistorico.text"/>
+                <Property name="name" type="java.lang.String" value="MenuBackupHistorico" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupHistoricoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuBackupRestaurar">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+R"/>
+                </Property>
+                <Property name="icon" type="javax.swing.Icon" resourceKey="MenuBackupRestaurar.icon"/>
+                <Property name="text" type="java.lang.String" resourceKey="MenuBackupRestaurar.text"/>
+                <Property name="name" type="java.lang.String" value="MenuBackupRestaurar" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuBackupRestaurarActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jMenu3.icon"/>
@@ -350,18 +495,6 @@
             <Property name="name" type="java.lang.String" value="menuConfiguracao" noResource="true"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="MenuPapelParede">
-              <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+Alt+J"/>
-                </Property>
-                <Property name="text" type="java.lang.String" resourceKey="MenuPapelParede.text"/>
-                <Property name="name" type="java.lang.String" value="MenuPapelParede" noResource="true"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuPapelParedeActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="MenuFerramentas">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
@@ -372,6 +505,18 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuFerramentasActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="MenuPapelParede">
+              <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Alt+J"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="MenuPapelParede.text"/>
+                <Property name="name" type="java.lang.String" value="MenuPapelParede" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuPapelParedeActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

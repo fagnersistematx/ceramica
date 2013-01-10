@@ -7,16 +7,21 @@ import Controler.ControleConfiguracao;
 import GUI.Atualizar.AlterarLoginSenhaUsuario;
 import GUI.BackupAutomatico;
 import GUI.BackupManual;
+import GUI.CadastrarFornecedorFisico;
+import GUI.CadastrarFornecedorJuridico;
+import GUI.CadastrarFuncionario;
 import GUI.CadastroClienteFisico;
 import GUI.CadastroClienteJuridico;
-import GUI.CadastroUsuario;
 import GUI.ConfiguracaoFerramentas;
+import GUI.Conta.ListaContas;
+import GUI.Conta.TelaReceita;
 import GUI.EscolhePapelParede;
 import GUI.EstadoServico;
 import GUI.HistóricoBackup;
 import GUI.LoguinInicial;
 import GUI.Pesquisa;
-import GUI.PesquisarUsuario;
+import GUI.PesquisaFornecedor;
+import GUI.PesquisarFuncionario;
 import GUI.RestauraBackup;
 import GUI.TrocarUsuario;
 import Util.ConfLook;
@@ -37,7 +42,6 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  * The application's main frame.
@@ -139,7 +143,7 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         mainPanel.add(lbImagem);
         x = lbImagem.getHeight();
         imagemTela();
-        
+
         //menuConfiguracao.setVisible(false);
         //jMenu2.setVisible(false);
     }
@@ -161,8 +165,8 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         mainPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -173,11 +177,24 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         MenuUsuario = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jtBackupManual = new javax.swing.JMenuItem();
-        MenuBackupAuto = new javax.swing.JMenuItem();
-        MenuBackupRestaurar = new javax.swing.JMenuItem();
-        MenuBackupHistorico = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu8 = new javax.swing.JMenu();
+        menuFornecedorFisico = new javax.swing.JMenuItem();
+        menuFornecedoJuridico = new javax.swing.JMenuItem();
+        menuPesquisarFornecedor = new javax.swing.JMenuItem();
+        menuListaContas = new javax.swing.JMenu();
+        menuDespesa = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        MenuListaDeConta = new javax.swing.JMenuItem();
+        MenuReceita = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenu9 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -185,11 +202,16 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         jMenuItem19 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        MenuBackupAuto = new javax.swing.JMenuItem();
+        jtBackupManual = new javax.swing.JMenuItem();
+        MenuBackupHistorico = new javax.swing.JMenuItem();
+        MenuBackupRestaurar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         menuConfiguracao = new javax.swing.JMenu();
-        MenuPapelParede = new javax.swing.JMenuItem();
         MenuFerramentas = new javax.swing.JMenuItem();
+        MenuPapelParede = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
@@ -211,17 +233,6 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem15.setIcon(resourceMap.getIcon("jMenuItem15.icon")); // NOI18N
-        jMenuItem15.setText(resourceMap.getString("jMenuItem15.text")); // NOI18N
-        jMenuItem15.setName("jMenuItem15"); // NOI18N
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        fileMenu.add(jMenuItem15);
-
         jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem16.setIcon(resourceMap.getIcon("jMenuItem16.icon")); // NOI18N
         jMenuItem16.setText(resourceMap.getString("jMenuItem16.text")); // NOI18N
@@ -232,6 +243,17 @@ public final class GerenciadorClientesView extends FrameView implements Componen
             }
         });
         fileMenu.add(jMenuItem16);
+
+        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem15.setIcon(resourceMap.getIcon("jMenuItem15.icon")); // NOI18N
+        jMenuItem15.setText(resourceMap.getString("jMenuItem15.text")); // NOI18N
+        jMenuItem15.setName("jMenuItem15"); // NOI18N
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem15);
 
         jSeparator1.setName("jSeparator1"); // NOI18N
         fileMenu.add(jSeparator1);
@@ -318,56 +340,124 @@ public final class GerenciadorClientesView extends FrameView implements Componen
 
         menuBar.add(MenuUsuario);
 
-        jMenu2.setIcon(resourceMap.getIcon("jMenu2.icon")); // NOI18N
-        jMenu2.setMnemonic('b');
-        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
-        jMenu2.setName("jMenu2"); // NOI18N
+        jMenu5.setIcon(resourceMap.getIcon("jMenu5.icon")); // NOI18N
+        jMenu5.setText(resourceMap.getString("jMenu5.text")); // NOI18N
+        jMenu5.setName("jMenu5"); // NOI18N
 
-        jtBackupManual.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jtBackupManual.setIcon(resourceMap.getIcon("jtBackupManual.icon")); // NOI18N
-        jtBackupManual.setText(resourceMap.getString("jtBackupManual.text")); // NOI18N
-        jtBackupManual.setName("jtBackupManual"); // NOI18N
-        jtBackupManual.addActionListener(new java.awt.event.ActionListener() {
+        jMenu8.setIcon(resourceMap.getIcon("jMenu8.icon")); // NOI18N
+        jMenu8.setText(resourceMap.getString("jMenu8.text")); // NOI18N
+        jMenu8.setName("jMenu8"); // NOI18N
+
+        menuFornecedorFisico.setText(resourceMap.getString("menuFornecedorFisico.text")); // NOI18N
+        menuFornecedorFisico.setName("menuFornecedorFisico"); // NOI18N
+        menuFornecedorFisico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtBackupManualActionPerformed(evt);
+                menuFornecedorFisicoActionPerformed(evt);
             }
         });
-        jMenu2.add(jtBackupManual);
+        jMenu8.add(menuFornecedorFisico);
 
-        MenuBackupAuto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MenuBackupAuto.setIcon(resourceMap.getIcon("MenuBackupAuto.icon")); // NOI18N
-        MenuBackupAuto.setText(resourceMap.getString("MenuBackupAuto.text")); // NOI18N
-        MenuBackupAuto.setName("MenuBackupAuto"); // NOI18N
-        MenuBackupAuto.addActionListener(new java.awt.event.ActionListener() {
+        menuFornecedoJuridico.setText(resourceMap.getString("menuFornecedoJuridico.text")); // NOI18N
+        menuFornecedoJuridico.setName("menuFornecedoJuridico"); // NOI18N
+        menuFornecedoJuridico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuBackupAutoActionPerformed(evt);
+                menuFornecedoJuridicoActionPerformed(evt);
             }
         });
-        jMenu2.add(MenuBackupAuto);
+        jMenu8.add(menuFornecedoJuridico);
 
-        MenuBackupRestaurar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MenuBackupRestaurar.setIcon(resourceMap.getIcon("MenuBackupRestaurar.icon")); // NOI18N
-        MenuBackupRestaurar.setText(resourceMap.getString("MenuBackupRestaurar.text")); // NOI18N
-        MenuBackupRestaurar.setName("MenuBackupRestaurar"); // NOI18N
-        MenuBackupRestaurar.addActionListener(new java.awt.event.ActionListener() {
+        jMenu5.add(jMenu8);
+
+        menuPesquisarFornecedor.setIcon(resourceMap.getIcon("menuPesquisarFornecedor.icon")); // NOI18N
+        menuPesquisarFornecedor.setText(resourceMap.getString("menuPesquisarFornecedor.text")); // NOI18N
+        menuPesquisarFornecedor.setName("menuPesquisarFornecedor"); // NOI18N
+        menuPesquisarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuBackupRestaurarActionPerformed(evt);
+                menuPesquisarFornecedorActionPerformed(evt);
             }
         });
-        jMenu2.add(MenuBackupRestaurar);
+        jMenu5.add(menuPesquisarFornecedor);
 
-        MenuBackupHistorico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MenuBackupHistorico.setIcon(resourceMap.getIcon("MenuBackupHistorico.icon")); // NOI18N
-        MenuBackupHistorico.setText(resourceMap.getString("MenuBackupHistorico.text")); // NOI18N
-        MenuBackupHistorico.setName("MenuBackupHistorico"); // NOI18N
-        MenuBackupHistorico.addActionListener(new java.awt.event.ActionListener() {
+        menuBar.add(jMenu5);
+
+        menuListaContas.setIcon(resourceMap.getIcon("menuListaContas.icon")); // NOI18N
+        menuListaContas.setText(resourceMap.getString("menuListaContas.text")); // NOI18N
+        menuListaContas.setName("menuListaContas"); // NOI18N
+        menuListaContas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuBackupHistoricoActionPerformed(evt);
+                menuListaContasActionPerformed(evt);
             }
         });
-        jMenu2.add(MenuBackupHistorico);
 
-        menuBar.add(jMenu2);
+        menuDespesa.setIcon(resourceMap.getIcon("menuDespesa.icon")); // NOI18N
+        menuDespesa.setText(resourceMap.getString("menuDespesa.text")); // NOI18N
+        menuDespesa.setName("menuDespesa"); // NOI18N
+        menuDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuDespesaActionPerformed(evt);
+            }
+        });
+        menuListaContas.add(menuDespesa);
+
+        jMenu7.setText(resourceMap.getString("jMenu7.text")); // NOI18N
+        jMenu7.setName("jMenu7"); // NOI18N
+
+        jMenuItem20.setText(resourceMap.getString("jMenuItem20.text")); // NOI18N
+        jMenuItem20.setName("jMenuItem20"); // NOI18N
+        jMenu7.add(jMenuItem20);
+
+        jMenuItem13.setText(resourceMap.getString("jMenuItem13.text")); // NOI18N
+        jMenuItem13.setName("jMenuItem13"); // NOI18N
+        jMenu7.add(jMenuItem13);
+
+        jMenuItem21.setText(resourceMap.getString("jMenuItem21.text")); // NOI18N
+        jMenuItem21.setName("jMenuItem21"); // NOI18N
+        jMenu7.add(jMenuItem21);
+
+        jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
+        jMenuItem9.setName("jMenuItem9"); // NOI18N
+        jMenu7.add(jMenuItem9);
+
+        jMenuItem24.setText(resourceMap.getString("jMenuItem24.text")); // NOI18N
+        jMenuItem24.setName("jMenuItem24"); // NOI18N
+        jMenu7.add(jMenuItem24);
+
+        jMenuItem14.setText(resourceMap.getString("jMenuItem14.text")); // NOI18N
+        jMenuItem14.setName("jMenuItem14"); // NOI18N
+        jMenu7.add(jMenuItem14);
+
+        menuListaContas.add(jMenu7);
+
+        MenuListaDeConta.setIcon(resourceMap.getIcon("MenuListaDeConta.icon")); // NOI18N
+        MenuListaDeConta.setText(resourceMap.getString("MenuListaDeConta.text")); // NOI18N
+        MenuListaDeConta.setName("MenuListaDeConta"); // NOI18N
+        MenuListaDeConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuListaDeContaActionPerformed(evt);
+            }
+        });
+        menuListaContas.add(MenuListaDeConta);
+
+        MenuReceita.setIcon(resourceMap.getIcon("MenuReceita.icon")); // NOI18N
+        MenuReceita.setText(resourceMap.getString("MenuReceita.text")); // NOI18N
+        MenuReceita.setName("MenuReceita"); // NOI18N
+        MenuReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuReceitaActionPerformed(evt);
+            }
+        });
+        menuListaContas.add(MenuReceita);
+
+        jMenuItem23.setIcon(resourceMap.getIcon("jMenuItem23.icon")); // NOI18N
+        jMenuItem23.setText(resourceMap.getString("jMenuItem23.text")); // NOI18N
+        jMenuItem23.setName("jMenuItem23"); // NOI18N
+        menuListaContas.add(jMenuItem23);
+
+        menuBar.add(menuListaContas);
+
+        jMenu9.setText(resourceMap.getString("jMenu9.text")); // NOI18N
+        jMenu9.setName("jMenu9"); // NOI18N
+        menuBar.add(jMenu9);
 
         jMenu6.setIcon(resourceMap.getIcon("jMenu6.icon")); // NOI18N
         jMenu6.setMnemonic('f');
@@ -442,6 +532,57 @@ public final class GerenciadorClientesView extends FrameView implements Componen
 
         menuBar.add(jMenu6);
 
+        jMenu2.setIcon(resourceMap.getIcon("jMenu2.icon")); // NOI18N
+        jMenu2.setMnemonic('b');
+        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
+        jMenu2.setName("jMenu2"); // NOI18N
+
+        MenuBackupAuto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MenuBackupAuto.setIcon(resourceMap.getIcon("MenuBackupAuto.icon")); // NOI18N
+        MenuBackupAuto.setText(resourceMap.getString("MenuBackupAuto.text")); // NOI18N
+        MenuBackupAuto.setName("MenuBackupAuto"); // NOI18N
+        MenuBackupAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBackupAutoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuBackupAuto);
+
+        jtBackupManual.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jtBackupManual.setIcon(resourceMap.getIcon("jtBackupManual.icon")); // NOI18N
+        jtBackupManual.setText(resourceMap.getString("jtBackupManual.text")); // NOI18N
+        jtBackupManual.setName("jtBackupManual"); // NOI18N
+        jtBackupManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBackupManualActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jtBackupManual);
+
+        MenuBackupHistorico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MenuBackupHistorico.setIcon(resourceMap.getIcon("MenuBackupHistorico.icon")); // NOI18N
+        MenuBackupHistorico.setText(resourceMap.getString("MenuBackupHistorico.text")); // NOI18N
+        MenuBackupHistorico.setName("MenuBackupHistorico"); // NOI18N
+        MenuBackupHistorico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBackupHistoricoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuBackupHistorico);
+
+        MenuBackupRestaurar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MenuBackupRestaurar.setIcon(resourceMap.getIcon("MenuBackupRestaurar.icon")); // NOI18N
+        MenuBackupRestaurar.setText(resourceMap.getString("MenuBackupRestaurar.text")); // NOI18N
+        MenuBackupRestaurar.setName("MenuBackupRestaurar"); // NOI18N
+        MenuBackupRestaurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuBackupRestaurarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuBackupRestaurar);
+
+        menuBar.add(jMenu2);
+
         jMenu3.setIcon(resourceMap.getIcon("jMenu3.icon")); // NOI18N
         jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
         jMenu3.setName("jMenu3"); // NOI18N
@@ -464,16 +605,6 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         menuConfiguracao.setText(resourceMap.getString("menuConfiguracao.text")); // NOI18N
         menuConfiguracao.setName("menuConfiguracao"); // NOI18N
 
-        MenuPapelParede.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        MenuPapelParede.setText(resourceMap.getString("MenuPapelParede.text")); // NOI18N
-        MenuPapelParede.setName("MenuPapelParede"); // NOI18N
-        MenuPapelParede.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuPapelParedeActionPerformed(evt);
-            }
-        });
-        menuConfiguracao.add(MenuPapelParede);
-
         MenuFerramentas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         MenuFerramentas.setText(resourceMap.getString("MenuFerramentas.text")); // NOI18N
         MenuFerramentas.setName("MenuFerramentas"); // NOI18N
@@ -483,6 +614,16 @@ public final class GerenciadorClientesView extends FrameView implements Componen
             }
         });
         menuConfiguracao.add(MenuFerramentas);
+
+        MenuPapelParede.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MenuPapelParede.setText(resourceMap.getString("MenuPapelParede.text")); // NOI18N
+        MenuPapelParede.setName("MenuPapelParede"); // NOI18N
+        MenuPapelParede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuPapelParedeActionPerformed(evt);
+            }
+        });
+        menuConfiguracao.add(MenuPapelParede);
 
         menuBar.add(menuConfiguracao);
 
@@ -613,7 +754,7 @@ private void MenuBackupHistoricoActionPerformed(java.awt.event.ActionEvent evt) 
 private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
     if (cadastroUsuario == null) {
         JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
-        cadastroUsuario = new CadastroUsuario(mainFrame);
+        cadastroUsuario = new CadastrarFuncionario(mainFrame);
         cadastroUsuario.setLocationRelativeTo(mainFrame);
     }
     GerenciadorClientesApp.getApplication().show(cadastroUsuario);
@@ -711,7 +852,7 @@ private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
     JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
-    pesquisarUsuario = new PesquisarUsuario(mainFrame);
+    pesquisarUsuario = new PesquisarFuncionario(mainFrame);
 
     GerenciadorClientesApp.getApplication().show(pesquisarUsuario);
     pesquisarUsuario.setSize(957, 474);
@@ -767,37 +908,112 @@ private void MenuPapelParedeActionPerformed(java.awt.event.ActionEvent evt) {//G
     GerenciadorClientesApp.getApplication().show(EscolhaPapelParede);
     EscolhaPapelParede.setSize(634, 234);
 }//GEN-LAST:event_MenuPapelParedeActionPerformed
+
+private void MenuReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuReceitaActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    contaReceitaDespesaTransferencia = new TelaReceita(mainFrame, 0);
+    contaReceitaDespesaTransferencia.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(contaReceitaDespesaTransferencia);
+    contaReceitaDespesaTransferencia.setSize(665, 484);
+}//GEN-LAST:event_MenuReceitaActionPerformed
+
+private void menuDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuDespesaActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    contaReceitaDespesaTransferencia = new TelaReceita(mainFrame, 1);
+    contaReceitaDespesaTransferencia.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(contaReceitaDespesaTransferencia);
+    contaReceitaDespesaTransferencia.setSize(665, 484);
+}//GEN-LAST:event_menuDespesaActionPerformed
+
+private void menuListaContasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaContasActionPerformed
+}//GEN-LAST:event_menuListaContasActionPerformed
+
+private void MenuListaDeContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuListaDeContaActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    listaContas = new ListaContas(mainFrame);
+    listaContas.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(listaContas);
+    listaContas.setSize(754, 391);
+}//GEN-LAST:event_MenuListaDeContaActionPerformed
+
+private void menuFornecedorFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFornecedorFisicoActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    fornecedorFisico = new CadastrarFornecedorFisico(mainFrame);
+    fornecedorFisico.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(fornecedorFisico);
+    fornecedorFisico.setSize(836, 619);
+}//GEN-LAST:event_menuFornecedorFisicoActionPerformed
+
+private void menuFornecedoJuridicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFornecedoJuridicoActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    fornecedorJuridico = new CadastrarFornecedorJuridico(mainFrame);
+    fornecedorJuridico.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(fornecedorJuridico);
+    fornecedorJuridico.setSize(836, 619);
+}//GEN-LAST:event_menuFornecedoJuridicoActionPerformed
+
+private void menuPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPesquisarFornecedorActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    pesquisarFornecedor = new PesquisaFornecedor(mainFrame);
+    pesquisarFornecedor.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(pesquisarFornecedor);
+    pesquisarFornecedor.setSize(947, 458);
+}//GEN-LAST:event_menuPesquisarFornecedorActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuBackupAuto;
     private javax.swing.JMenuItem MenuBackupHistorico;
     private javax.swing.JMenuItem MenuBackupRestaurar;
     private javax.swing.JMenuItem MenuFerramentas;
+    private javax.swing.JMenuItem MenuListaDeConta;
     private javax.swing.JMenuItem MenuPapelParede;
+    private javax.swing.JMenuItem MenuReceita;
     private javax.swing.JMenu MenuUsuario;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuItem jtBackupManual;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuConfiguracao;
+    private javax.swing.JMenuItem menuDespesa;
+    private javax.swing.JMenuItem menuFornecedoJuridico;
+    private javax.swing.JMenuItem menuFornecedorFisico;
+    private javax.swing.JMenu menuListaContas;
+    private javax.swing.JMenuItem menuPesquisarFornecedor;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
@@ -824,6 +1040,11 @@ private void MenuPapelParedeActionPerformed(java.awt.event.ActionEvent evt) {//G
     private JDialog trocarUsuario;
     private JDialog pesquisarUsuario;
     private JDialog alterarLoginSenha;
+    private JDialog listaContas;
+    private JDialog fornecedorFisico;
+    private JDialog fornecedorJuridico;
+    private JDialog pesquisarFornecedor;
+    private JDialog contaReceitaDespesaTransferencia;
 
     public void componentResized(ComponentEvent e) {
         imagemTela();
