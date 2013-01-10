@@ -7,7 +7,7 @@ package Util;
 import Entidade.Cliente;
 import Entidade.Maquina;
 import Entidade.Servico;
-import Entidade.Usuario;
+import Entidade.Funcionario;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -22,7 +22,7 @@ public class Config {
     private static Cliente cliente;
     private static Maquina maquina;
     private static Servico servico;
-    private static Usuario usuario;
+    private static Funcionario usuario;
     private static JLabel tfUsuario;
     private static JMenuItem MenuBackupAuto;
     private static JMenuItem MenuBackupHistorico;
@@ -62,12 +62,12 @@ public class Config {
         Config.maquina = maquina;
     }
 
-    public static Usuario getUsuario() {
+    public static Funcionario getUsuario() {
         return usuario;
     }
 
-    public static void setUsuario(Usuario usuario) {
-        Usuario u = new Usuario();
+    public static void setUsuario(Funcionario usuario) {
+        Funcionario u = new Funcionario();
         u = usuario;
         Config.usuario = u;
     }

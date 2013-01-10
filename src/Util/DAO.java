@@ -68,7 +68,7 @@ public class DAO implements Serializable {
             }
             em.remove(object);
             em.getTransaction().commit();
-            JOptionPane.showMessageDialog(null, "Excluído com sucesso.");
+            //JOptionPane.showMessageDialog(null, "Excluído com sucesso.");
         } finally {
             if (em != null) {
                 em.close();
