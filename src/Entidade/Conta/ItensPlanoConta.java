@@ -1,11 +1,7 @@
+
 package Entidade.Conta;
 
-
-
-
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,28 +14,28 @@ import javax.persistence.Table;
  * @version 1.0
  */
 @Entity
-@Table(name="imposto")
-public class Imposto extends Fluxo implements Serializable {
+@Table(name="itens_plano")
+public class ItensPlanoConta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private float valor;
-    private float aliquota;
+    private String nome;
 
-    public Imposto() {
+    public ItensPlanoConta() {
     }
 
-    public Imposto(String nome, String obs, Calendar criacao, List<Lancamento> lancamentos, float valor, float aliquota) {
-        this.valor = valor;
-        this.aliquota = aliquota;
-        super.setNome(nome);
-        super.setObs(obs);
-        super.setCriacao(criacao);
-        super.setLancamentos(lancamentos);
+    public ItensPlanoConta(String nome) {
+        this.nome = nome;
+    }    
+
+    public String getNome() {
+        return nome;
     }
-    
-    
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }   
 
     public Long getId() {
         return id;
@@ -48,22 +44,6 @@ public class Imposto extends Fluxo implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public float getValor() {
-        return valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public float getAliquota() {
-        return aliquota;
-    }
-
-    public void setAliquota(float aliquota) {
-        this.aliquota = aliquota;
-    }   
 
     @Override
     public int hashCode() {
@@ -75,10 +55,10 @@ public class Imposto extends Fluxo implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Imposto)) {
+        if (!(object instanceof ItensPlanoConta)) {
             return false;
         }
-        Imposto other = (Imposto) object;
+        ItensPlanoConta other = (ItensPlanoConta) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -87,7 +67,7 @@ public class Imposto extends Fluxo implements Serializable {
 
     @Override
     public String toString() {
-        return "Entidade.Conta.Imposto[ id=" + id + " ]";
+        return "Entidade.Conta.ItensPlanoConta[ id=" + id + " ]";
     }
 
 }

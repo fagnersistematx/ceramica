@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
  * @version 1.0
  */
 @MappedSuperclass
-public abstract class Investimento extends Conta{
+public abstract class Investimento extends Fluxo{
     
     private float iof;
     private float cpmf;

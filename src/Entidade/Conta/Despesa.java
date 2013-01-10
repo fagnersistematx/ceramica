@@ -15,7 +15,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "despesa")
-public class Despesa extends Conta implements Serializable {
+public class Despesa extends Fluxo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id

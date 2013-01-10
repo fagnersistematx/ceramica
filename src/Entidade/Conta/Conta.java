@@ -1,28 +1,46 @@
+
 package Entidade.Conta;
 
+import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Cascade;
 
 /**
- *
- * @author fagner
+ * Conta é um local onde será armazenados fluxo de entrada e saída.
+ * @author Fagner Silva Martins, fagner.silva@dce.ufpb.br
+ * @version 1.0
  */
-@MappedSuperclass
-public abstract class Conta {
-
+@Entity
+@Table(name="conta")
+public class Conta implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nome;
-    private String obs;
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
-    private Calendar criacao;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
-    private List<Lancamento> lancamentos;
+    private String banco;
+    private String agencia;
+    private String numero;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Calendar data_saldo;
+    private float valor;
+
+    public Conta() {
+    }
+
+    public Conta(String nome, String banco, String agencia, String numero, Calendar data_saldo, float valor) {
+        this.nome = nome;
+        this.banco = banco;
+        this.agencia = agencia;
+        this.numero = numero;
+        this.data_saldo = data_saldo;
+        this.valor = valor;
+    }
 
     public String getNome() {
         return nome;
@@ -32,28 +50,77 @@ public abstract class Conta {
         this.nome = nome;
     }
 
-    public String getObs() {
-        return obs;
+    public String getBanco() {
+        return banco;
     }
 
-    public void setObs(String obs) {
-        this.obs = obs;
+    public void setBanco(String banco) {
+        this.banco = banco;
     }
 
-    public Calendar getCriacao() {
-        return criacao;
+    public String getAgencia() {
+        return agencia;
     }
 
-    public void setCriacao(Calendar criacao) {
-        this.criacao = criacao;
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
     }
 
-    public List<Lancamento> getLancamentos() {
-        return lancamentos;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setLancamentos(List<Lancamento> lancamentos) {
-        this.lancamentos = lancamentos;
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public Calendar getData_saldo() {
+        return data_saldo;
+    }
+
+    public void setData_saldo(Calendar data_saldo) {
+        this.data_saldo = data_saldo;
+    }
+
+    public float getValor() {
+        return valor;
+    }
+
+    public void setValor(float valor) {
+        this.valor = valor;
     }
     
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Conta)) {
+            return false;
+        }
+        Conta other = (Conta) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Entidade.Conta.Conta[ id=" + id + " ]";
+    }
+
 }
