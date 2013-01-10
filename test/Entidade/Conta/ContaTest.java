@@ -1,14 +1,17 @@
 package Entidade.Conta;
 
-import Entidade.Conta.Exception.ContaDespesaException;
+import Entidade.Conta.Exception.FluxoDespesaException;
+import Entidade.Conta.Exception.ContaException;
 import Entidade.Conta.Exception.ContaImpostoException;
-import Entidade.Conta.Exception.ContaReceitaException;
+import Entidade.Conta.Exception.FluxoReceitaException;
 import Entidade.Conta.Exception.InvestimentoAcoesDaBolsaException;
 import Entidade.Conta.Exception.InvestimentoCdbException;
 import Entidade.Conta.Exception.InvestimentoFundoException;
 import Entidade.Conta.Exception.InvestimentoPoupancaException;
 import Entidade.Conta.Exception.InvestimentoTituloException;
+import Entidade.Conta.Exception.ItensPlanoContaException;
 import Entidade.Conta.Exception.LancamentoException;
+import Entidade.Conta.Exception.PlanoContaException;
 import Fachada.Fachada;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -72,13 +75,13 @@ public class ContaTest {
 
         try {
             fachada.alterarContaReceita(receita.getId(), nomeA, obsA, dataCriacaoA, tipoA, lancamentosA);
-        } catch (ContaReceitaException ex) {
+        } catch (FluxoReceitaException ex) {
             fail("" + ex);
         }
 
         try {
             receita = fachada.buscaContaReceita(receita.getId());
-        } catch (ContaReceitaException ex) {
+        } catch (FluxoReceitaException ex) {
             fail("" + ex);
         }
 
@@ -87,7 +90,7 @@ public class ContaTest {
         assertEquals(receita.getTipo(), tipoA);
         try {
             fachada.removerContaReceita(receita.getId());
-        } catch (ContaReceitaException ex) {
+        } catch (FluxoReceitaException ex) {
             fail("" + ex);
         }
         assertEquals(fachada.contContaReceita(), 0);
@@ -116,13 +119,13 @@ public class ContaTest {
 
         try {
             fachada.alterarContaDespesa(despesa.getId(), nomeA, obsA, dataCriacaoA, tipoA, lancamentosA);
-        } catch (ContaDespesaException ex) {
+        } catch (FluxoDespesaException ex) {
             fail("" + ex);
         }
 
         try {
             despesa = fachada.buscaDespesa(despesa.getId());
-        } catch (ContaDespesaException ex) {
+        } catch (FluxoDespesaException ex) {
             fail("" + ex);
         }
 
@@ -131,7 +134,7 @@ public class ContaTest {
         assertEquals(despesa.getTipo(), tipoA);
         try {
             fachada.removerDespesa(despesa.getId());
-        } catch (ContaDespesaException ex) {
+        } catch (FluxoDespesaException ex) {
             fail("" + ex);
         }
         assertEquals(fachada.contDespesa(), 0);
@@ -333,11 +336,11 @@ public class ContaTest {
 
         Cdb cdb;
 
-        cdb = fachada.criarInvestimentoCDB(contratacao, investimento, iof, cpmf, saldo_original, saldo_atualizado, 
+        cdb = fachada.criarInvestimentoCDB(contratacao, investimento, iof, cpmf, saldo_original, saldo_atualizado,
                 nm_conta, nome, obs, criacao, lancamentos);
 
         try {
-            fachada.alterarInvestimentoCDB(cdb.getId(), contratacaoA, investimentoA, iofA, cpmfA, saldo_originalA, 
+            fachada.alterarInvestimentoCDB(cdb.getId(), contratacaoA, investimentoA, iofA, cpmfA, saldo_originalA,
                     saldo_atualizadoA, nm_contaA, nomeA, obsA, criacaoA, lancamentosA);
         } catch (InvestimentoCdbException ex) {
             fail(ex.getMessage());
@@ -397,11 +400,11 @@ public class ContaTest {
 
         Fundo fundo;
 
-        fundo = fachada.criarInvestimentoFundo(administracao, performace, tipo, iof, cpmf, saldo_original, saldo_atualizado, 
+        fundo = fachada.criarInvestimentoFundo(administracao, performace, tipo, iof, cpmf, saldo_original, saldo_atualizado,
                 nm_conta, nome, obs, criacao, lancamentos);
 
         try {
-            fachada.alterarInvestimentoFundo(fundo.getId(), administracaoA, performaceA, tipoA, iofA, cpmfA, saldo_originalA, 
+            fachada.alterarInvestimentoFundo(fundo.getId(), administracaoA, performaceA, tipoA, iofA, cpmfA, saldo_originalA,
                     saldo_atualizadoA, nm_contaA, nomeA, obsA, criacaoA, lancamentosA);
         } catch (InvestimentoFundoException ex) {
             fail(ex.getMessage());
@@ -460,7 +463,7 @@ public class ContaTest {
         poupanca = fachada.criarInvestimentoPoupanca(iof, cpmf, saldo_original, saldo_atualizado, nm_conta, nome, obs, criacao, lancamentos);
 
         try {
-            fachada.alterarInvestimentoPoupanca(poupanca.getId(), iofA, cpmfA, saldo_originalA, saldo_atualizadoA, nm_contaA, nomeA, 
+            fachada.alterarInvestimentoPoupanca(poupanca.getId(), iofA, cpmfA, saldo_originalA, saldo_atualizadoA, nm_contaA, nomeA,
                     obsA, criacaoA, lancamentosA);
         } catch (InvestimentoPoupancaException ex) {
             fail(ex.getMessage());
@@ -519,10 +522,10 @@ public class ContaTest {
 
         Titulo titulo;
 
-        titulo = fachada.criarInvestimentoTitulo(cblc,banco,tipo,iof, cpmf, saldo_original, saldo_atualizado, nm_conta, nome, obs, criacao, lancamentos);
+        titulo = fachada.criarInvestimentoTitulo(cblc, banco, tipo, iof, cpmf, saldo_original, saldo_atualizado, nm_conta, nome, obs, criacao, lancamentos);
 
         try {
-            fachada.alterarInvestimentoTitulo(titulo.getId(), cblcA, bancoA, tipoA, iofA, cpmfA, saldo_originalA, saldo_atualizadoA, nm_contaA, 
+            fachada.alterarInvestimentoTitulo(titulo.getId(), cblcA, bancoA, tipoA, iofA, cpmfA, saldo_originalA, saldo_atualizadoA, nm_contaA,
                     nomeA, obsA, criacaoA, lancamentosA);
         } catch (InvestimentoTituloException ex) {
             fail(ex.getMessage());
@@ -551,5 +554,127 @@ public class ContaTest {
         }
 
         assertEquals(fachada.contInvestimentoTitulo(), 0);
+    }
+
+    @Test
+    public void testeConta() {
+
+        float valor = 100;
+        String numero = "12345";
+        String nome = "nome conta";
+        String agencia = "obs";
+        String banco = "tipo";
+        Calendar criacao = Calendar.getInstance();
+
+        float valorA = 200;
+        String numeroA = "12345A";
+        String nomeA = "nome contaA";
+        String agenciaA = "obsA";
+        String bancoA = "tipoA";
+        Calendar criacaoA = Calendar.getInstance();
+
+        Conta conta;
+
+        conta = fachada.criarConta(nome, banco, agencia, numero, criacao, valor);
+
+        try {
+            fachada.alterarConta(conta.getId(), nomeA, bancoA, agenciaA, numeroA, criacaoA, valorA);
+        } catch (ContaException ex) {
+            fail(ex.getMessage());
+        }
+        try {
+            conta = fachada.buscaConta(conta.getId());
+        } catch (ContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        assertEquals(conta.getBanco(), bancoA);
+        assertEquals(conta.getNome(), nomeA);
+        assertEquals(conta.getAgencia(), agenciaA);
+        assertEquals(conta.getNumero(), numeroA);
+        assertEquals(conta.getValor(), valorA, 0);
+
+        try {
+            fachada.removerConta(conta.getId());
+        } catch (ContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        //assertEquals(fachada.contConta(), 0);
+    }
+
+    @Test
+    public void testePlanoConta() {
+
+        String nome = "nome conta";
+        String nomeA = "nome contaA";
+        boolean tipo = true;
+        boolean tipoA = false;
+        ItensPlanoConta ipc = new ItensPlanoConta("teste");
+        List<ItensPlanoConta> itensPlanoContas = new ArrayList<ItensPlanoConta>();
+
+        itensPlanoContas.add(ipc);
+
+        PlanoConta planoConta = new PlanoConta();
+
+
+        planoConta = fachada.criarPlanoConta(nome,tipo);
+        planoConta.setItensPlanoContas(itensPlanoContas);
+
+        try {
+            fachada.alterarPlanoConta(planoConta.getId(), nomeA,tipoA,itensPlanoContas);
+        } catch (PlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+        try {
+            planoConta = fachada.buscaPlanoConta(planoConta.getId());
+        } catch (PlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        assertEquals(planoConta.getNome(), nomeA);
+        assertFalse(tipoA);
+
+        try {
+            fachada.removerPlanoConta(planoConta.getId());
+        } catch (PlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        assertEquals(fachada.contPlanoConta(), 0);
+    }
+    
+    @Test
+    public void testeItensPlanoConta() {
+
+        String nome = "nome conta";
+        String nomeA = "nome contaA";
+        
+
+        ItensPlanoConta itensPlanoConta;
+
+
+        itensPlanoConta = fachada.criarItensPlanoConta(nome);       
+
+        try {
+            fachada.alterarItensPlanoConta(itensPlanoConta.getId(), nomeA);
+        } catch (ItensPlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+        try {
+            itensPlanoConta = fachada.buscaItensPlanoConta(itensPlanoConta.getId());
+        } catch (ItensPlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        assertEquals(itensPlanoConta.getNome(), nomeA);
+
+        try {
+            fachada.removerItensPlanoConta(itensPlanoConta.getId());
+        } catch (ItensPlanoContaException ex) {
+            fail(ex.getMessage());
+        }
+
+        assertEquals(fachada.contItensPlanoConta(), 0);
     }
 }
