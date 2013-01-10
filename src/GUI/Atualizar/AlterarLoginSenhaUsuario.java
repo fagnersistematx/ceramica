@@ -10,7 +10,7 @@
  */
 package GUI.Atualizar;
 
-import Controler.ControleUsuario;
+import Controler.FuncionarioController;
 import Util.Config;
 import javax.swing.JOptionPane;
 
@@ -20,12 +20,12 @@ import javax.swing.JOptionPane;
  */
 public class AlterarLoginSenhaUsuario extends javax.swing.JDialog {
 
-    private ControleUsuario controleUsuario;
+    private FuncionarioController controleUsuario;
     
     public AlterarLoginSenhaUsuario(java.awt.Frame parent) {
         super(parent);
         initComponents();
-        controleUsuario = new ControleUsuario();
+        controleUsuario = new FuncionarioController();
         tfLogin.setText(Config.getUsuario().getLogin());
     }
     @SuppressWarnings("unchecked")

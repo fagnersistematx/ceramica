@@ -11,9 +11,9 @@
 package GUI.Atualizar;
 
 import Controler.ControleServico;
-import Controler.ControleUsuario;
+import Controler.FuncionarioController;
 import Entidade.Servico;
-import Entidade.Usuario;
+import Entidade.Funcionario;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class AlterarEstadoSevico extends javax.swing.JDialog {
 
-    private ControleUsuario controleUsuario;
+    private FuncionarioController controleUsuario;
     private ControleServico controleServico;
     private JDialog tela;
     private Servico servico;
@@ -34,7 +34,7 @@ public class AlterarEstadoSevico extends javax.swing.JDialog {
         this.servico = servico;
         this.tela = tela;
         controleServico = new ControleServico();
-        controleUsuario = new ControleUsuario();
+        controleUsuario = new FuncionarioController();
         preencherCbUsuario();
         mostrarDados();
     }
@@ -187,7 +187,7 @@ private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 
     private void preencherCbUsuario() {
         try {
-            for (Usuario u : controleUsuario.converte()) {
+            for (Funcionario u : controleUsuario.converte()) {
                 cbResponsavel.addItem(u.getNome());
             }
         } catch (Exception erro) {

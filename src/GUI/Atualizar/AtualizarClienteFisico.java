@@ -12,6 +12,8 @@ package GUI.Atualizar;
 
 import Controler.ControleCliente;
 import Util.Config;
+import java.awt.KeyboardFocusManager;
+import java.util.Collections;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -31,6 +33,8 @@ public class AtualizarClienteFisico extends javax.swing.JDialog {
         this.mostrarDados();
         this.tela = tela;
         this.setLocationRelativeTo(null); 
+        tfComplemento.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        tfOBSCliente.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
     }
 
     @SuppressWarnings("unchecked")
