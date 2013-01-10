@@ -6,7 +6,7 @@ package Controler;
 
 import Entidade.Backup;
 import Entidade.Configuracao;
-import Entidade.Usuario;
+import Entidade.Funcionario;
 import Util.Config;
 import Util.DAO;
 import java.text.DateFormat;
@@ -54,7 +54,7 @@ public class ControleConfiguracao {
         try {
             confs = dao.findObjectEntities(Configuracao.class);
 
-            if (dao.getObjectCount(Usuario.class) == 0) {
+            if (dao.getObjectCount(Funcionario.class) == 0) {
                 salvarUsuario();
             }
             if (confs.size() > 0) {
@@ -93,8 +93,11 @@ public class ControleConfiguracao {
     private static void salvarUsuario() {
         try {
 
-            Usuario usuario = new Usuario("Sistema GCS", "GCS", "GCS", "FAGNER.SILVA@DCE.UFPB.BR", "", "", false);
-            dao.create(usuario);
+            Funcionario funcionario = new Funcionario();
+            funcionario.setNome("Sistema GCS");
+            funcionario.setLogin("GCS");
+            funcionario.setSenha("GCS");
+            dao.create(funcionario);
 
         } catch (Exception erro) {
         }
@@ -161,7 +164,7 @@ public class ControleConfiguracao {
 
     private void BackupAutomatico() {
         try {
-            Usuario u = new Usuario();
+            Funcionario u = new Funcionario();
             u.setNome("Sistema GCS");
             Config.setUsuario(u);
             String arquivo = null;
@@ -215,7 +218,6 @@ public class ControleConfiguracao {
             }
 
             controleBackup.cadastraBackup(Backup.TIPOAUTO, arquivo);
-            //JOptionPane.showMessageDialog(null, "Backup realizado com sucesso.", "Backup", 1);
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "Erro no Backup manual.", "Atenção", JOptionPane.ERROR_MESSAGE);
