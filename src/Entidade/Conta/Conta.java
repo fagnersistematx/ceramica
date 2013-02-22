@@ -3,12 +3,16 @@ package Entidade.Conta;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
 
 /**
  * Conta é um local onde será armazenados fluxo de entrada e saída.
@@ -29,6 +33,10 @@ public class Conta implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar data_saldo;
     private float valor;
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    private List<Despesa> despesas;
+   
 
     public Conta() {
     }
@@ -97,6 +105,15 @@ public class Conta implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public List<Despesa> getDespesas() {
+        return despesas;
+    }
+
+    public void setDespesas(List<Despesa> despesas) {
+        this.despesas = despesas;
+    }
+    
 
     @Override
     public int hashCode() {

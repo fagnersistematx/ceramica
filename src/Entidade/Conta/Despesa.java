@@ -1,13 +1,20 @@
 package Entidade.Conta;
 
+import Entidade.Cliente;
+import Entidade.Fornecedor;
+import Entidade.Funcionario;
+import Entidade.Pessoa;
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -21,19 +28,36 @@ public class Despesa extends Fluxo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String tipo;
+    private float valor;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Calendar data_fluxo;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    private ItensPlanoConta itensPlanoConta;
 
     public Despesa() {
     }
 
-    public Despesa(String nomeConta,String obs, Calendar criacao,List<Lancamento> lancamentos, String tipo) {
-        this.tipo = tipo;
-        super.setNome(nomeConta);
+    public Despesa(String nome, float valor, String obs, Calendar criacao, Calendar data_fluxo, Pessoa pessoa, ItensPlanoConta itensPlanoConta) {
+       
+        if ((pessoa instanceof Fornecedor)) {
+            Fornecedor f = (Fornecedor) pessoa;
+            super.setFornecedor(f);
+        } else if ((pessoa instanceof Funcionario)) {
+            Funcionario f = (Funcionario) pessoa;   
+            super.setFuncionario(f);
+        } else if ((pessoa instanceof Cliente)) {
+            Cliente c = (Cliente) pessoa;
+            super.setCliente(c);
+        }
+        this.valor = valor;
+        this.itensPlanoConta = itensPlanoConta;
+        this.data_fluxo = data_fluxo;
+        super.setNome(nome);
         super.setObs(obs);
         super.setCriacao(criacao);
-        super.setLancamentos(lancamentos);
-    }  
-    
+    }
+
     public Long getId() {
         return id;
     }
@@ -42,12 +66,28 @@ public class Despesa extends Fluxo implements Serializable {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public float getValor() {
+        return valor;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setValor(float valor) {
+        this.valor = valor;
+    }
+
+    public Calendar getData_fluxo() {
+        return data_fluxo;
+    }
+
+    public void setData_fluxo(Calendar data_fluxo) {
+        this.data_fluxo = data_fluxo;
+    }
+
+    public ItensPlanoConta getItensPlanoConta() {
+        return itensPlanoConta;
+    }
+
+    public void setItensPlanoConta(ItensPlanoConta itensPlanoConta) {
+        this.itensPlanoConta = itensPlanoConta;
     }
 
     @Override

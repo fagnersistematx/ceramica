@@ -25,12 +25,11 @@ public class Receita extends Fluxo implements Serializable {
     public Receita() {
     }  
 
-    public Receita(String nomeConta,String obs, Calendar criacao,List<Lancamento> lancamentos, String tipo) {
+    public Receita(String nomeConta,String obs, Calendar criacao, String tipo) {
         this.tipo = tipo;
         super.setNome(nomeConta);
         super.setObs(obs);
         super.setCriacao(criacao);
-        super.setLancamentos(lancamentos);
     }  
     
 

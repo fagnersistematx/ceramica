@@ -1,10 +1,12 @@
 package Entidade.Conta;
 
+import Entidade.Cliente;
+import Entidade.Fornecedor;
+import Entidade.Funcionario;
 import java.util.Calendar;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import org.hibernate.annotations.Cascade;
 
@@ -19,10 +21,15 @@ public abstract class Fluxo {
     private String obs;
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Calendar criacao;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
-    private List<Lancamento> lancamentos;
+    private Funcionario funcionario;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    private Cliente cliente;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    private Fornecedor fornecedor;
 
     public String getNome() {
         return nome;
@@ -48,12 +55,28 @@ public abstract class Fluxo {
         this.criacao = criacao;
     }
 
-    public List<Lancamento> getLancamentos() {
-        return lancamentos;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setLancamentos(List<Lancamento> lancamentos) {
-        this.lancamentos = lancamentos;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
     }
     
 }
