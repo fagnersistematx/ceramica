@@ -12,7 +12,7 @@ import org.hibernate.annotations.Cascade;
  * @version 1.0
  */
 @MappedSuperclass
-public abstract class Pessoa {
+public abstract class Pessoa { 
     
     private String nome;
     private String cpf_cnpj;
