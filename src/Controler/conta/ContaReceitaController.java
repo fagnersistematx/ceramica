@@ -1,7 +1,6 @@
 package Controler.conta;
 
 import Entidade.Conta.Exception.FluxoReceitaException;
-import Entidade.Conta.Lancamento;
 import Entidade.Conta.Receita;
 import Util.DAO;
 import br.com.Banco.DAO.exceptions.NonexistentEntityException;
@@ -21,17 +20,16 @@ public class ContaReceitaController {
         dao = new DAO();
     }
 
-    public Receita criarContaReceita(String nome, String obs, Calendar dataCriacao, String tipo, List<Lancamento> lancamentos) {
-        Receita receita = new Receita(nome, obs, dataCriacao, lancamentos, tipo);
+    public Receita criarContaReceita(String nome, String obs, Calendar dataCriacao, String tipo) {
+        Receita receita = new Receita(nome, obs, dataCriacao, tipo);
         dao.create(receita);
         return receita;
     }
 
-    public void alterarContaReceita(Long id, String nome, String obs, Calendar dataCriacao, String tipo, List<Lancamento> lancamentos) throws FluxoReceitaException {
+    public void alterarContaReceita(Long id, String nome, String obs, Calendar dataCriacao, String tipo) throws FluxoReceitaException {
         try {
             Receita receita = (Receita) dao.findObject(id, Receita.class);
             receita.setCriacao(dataCriacao);
-            receita.setLancamentos(lancamentos);
             receita.setNome(nome);
             receita.setObs(obs);
             receita.setTipo(tipo);

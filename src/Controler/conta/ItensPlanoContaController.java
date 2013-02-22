@@ -81,4 +81,14 @@ public class ItensPlanoContaController {
         }
         return false;
     }
+    
+    public ItensPlanoConta buscaItensPlanoConta(String nome){
+        for (Object o : listarItensPlanoConta()) {
+            ItensPlanoConta c = (ItensPlanoConta) o;
+            if (c.getNome().equalsIgnoreCase(nome)) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

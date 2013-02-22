@@ -97,6 +97,7 @@ public class PlanoContaController {
         for (Object o : listarPlanoConta()) {
             PlanoConta c = (PlanoConta) o;
             if (c.getNome().equalsIgnoreCase(nome)) {
+                System.out.println(nome+ " |  "+c.getNome());
                 return true;
             }
         }
