@@ -5,9 +5,9 @@
 package Util;
 
 import Entidade.Cliente;
+import Entidade.Funcionario;
 import Entidade.Maquina;
 import Entidade.Servico;
-import Entidade.Funcionario;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
