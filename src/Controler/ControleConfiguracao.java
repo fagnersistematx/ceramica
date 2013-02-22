@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controler;
 
 import Entidade.Backup;
@@ -9,7 +6,6 @@ import Entidade.Configuracao;
 import Entidade.Funcionario;
 import Util.Config;
 import Util.DAO;
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -129,7 +125,7 @@ public class ControleConfiguracao {
                     aux = backups.get(i).getData_bkp();
                 }
             }
-            
+
             if (getCongiguracao().getTempo_backup().equalsIgnoreCase("")) {
                 return;
             } else if (getCongiguracao().getTempo_backup().equalsIgnoreCase("Anual")) {
@@ -168,7 +164,7 @@ public class ControleConfiguracao {
             u.setNome("Sistema GCS");
             Config.setUsuario(u);
             String arquivo = null;
-            arquivo = getCongiguracao().getPath_backup() + "/backup_sistema.sql";            
+            arquivo = getCongiguracao().getPath_backup() + "/backup_sistema.sql";
             String MYSQL_PATH = "C:/xampp/mysql/bin/";
             String DATABASES = "gcs";
             List<String> dbList = new ArrayList<String>();
@@ -223,4 +219,5 @@ public class ControleConfiguracao {
             JOptionPane.showMessageDialog(null, "Erro no Backup manual.", "Atenção", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 }
