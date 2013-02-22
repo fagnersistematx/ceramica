@@ -17,6 +17,8 @@ import GUI.Conta.ListaContas;
 import GUI.Conta.TelaReceita;
 import GUI.EscolhePapelParede;
 import GUI.EstadoServico;
+import GUI.Estoque.EntradaProdutos;
+import GUI.Estoque.ListaProdutos;
 import GUI.HistóricoBackup;
 import GUI.LoguinInicial;
 import GUI.Pesquisa;
@@ -26,22 +28,22 @@ import GUI.RestauraBackup;
 import GUI.TrocarUsuario;
 import Util.ConfLook;
 import Util.Config;
-import java.awt.event.ComponentEvent;
-import org.jdesktop.application.Action;
-import org.jdesktop.application.ResourceMap;
-import org.jdesktop.application.SingleFrameApplication;
-import org.jdesktop.application.FrameView;
-import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import org.jdesktop.application.Action;
+import org.jdesktop.application.FrameView;
+import org.jdesktop.application.ResourceMap;
+import org.jdesktop.application.SingleFrameApplication;
+import org.jdesktop.application.TaskMonitor;
 
 /**
  * The application's main frame.
@@ -195,6 +197,9 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         MenuReceita = new javax.swing.JMenuItem();
         jMenuItem23 = new javax.swing.JMenuItem();
         jMenu9 = new javax.swing.JMenu();
+        menuListaProduto = new javax.swing.JMenuItem();
+        menuEntradaDeProdutos = new javax.swing.JMenuItem();
+        menuRelatorio = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
@@ -348,6 +353,7 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         jMenu8.setText(resourceMap.getString("jMenu8.text")); // NOI18N
         jMenu8.setName("jMenu8"); // NOI18N
 
+        menuFornecedorFisico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuFornecedorFisico.setText(resourceMap.getString("menuFornecedorFisico.text")); // NOI18N
         menuFornecedorFisico.setName("menuFornecedorFisico"); // NOI18N
         menuFornecedorFisico.addActionListener(new java.awt.event.ActionListener() {
@@ -357,6 +363,7 @@ public final class GerenciadorClientesView extends FrameView implements Componen
         });
         jMenu8.add(menuFornecedorFisico);
 
+        menuFornecedoJuridico.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_J, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuFornecedoJuridico.setText(resourceMap.getString("menuFornecedoJuridico.text")); // NOI18N
         menuFornecedoJuridico.setName("menuFornecedoJuridico"); // NOI18N
         menuFornecedoJuridico.addActionListener(new java.awt.event.ActionListener() {
@@ -368,6 +375,7 @@ public final class GerenciadorClientesView extends FrameView implements Componen
 
         jMenu5.add(jMenu8);
 
+        menuPesquisarFornecedor.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         menuPesquisarFornecedor.setIcon(resourceMap.getIcon("menuPesquisarFornecedor.icon")); // NOI18N
         menuPesquisarFornecedor.setText(resourceMap.getString("menuPesquisarFornecedor.text")); // NOI18N
         menuPesquisarFornecedor.setName("menuPesquisarFornecedor"); // NOI18N
@@ -455,8 +463,38 @@ public final class GerenciadorClientesView extends FrameView implements Componen
 
         menuBar.add(menuListaContas);
 
+        jMenu9.setIcon(resourceMap.getIcon("jMenu9.icon")); // NOI18N
         jMenu9.setText(resourceMap.getString("jMenu9.text")); // NOI18N
         jMenu9.setName("jMenu9"); // NOI18N
+
+        menuListaProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        menuListaProduto.setIcon(resourceMap.getIcon("menuListaProduto.icon")); // NOI18N
+        menuListaProduto.setText(resourceMap.getString("menuListaProduto.text")); // NOI18N
+        menuListaProduto.setName("menuListaProduto"); // NOI18N
+        menuListaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuListaProdutoActionPerformed(evt);
+            }
+        });
+        jMenu9.add(menuListaProduto);
+
+        menuEntradaDeProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        menuEntradaDeProdutos.setIcon(resourceMap.getIcon("menuEntradaDeProdutos.icon")); // NOI18N
+        menuEntradaDeProdutos.setText(resourceMap.getString("menuEntradaDeProdutos.text")); // NOI18N
+        menuEntradaDeProdutos.setName("menuEntradaDeProdutos"); // NOI18N
+        menuEntradaDeProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEntradaDeProdutosActionPerformed(evt);
+            }
+        });
+        jMenu9.add(menuEntradaDeProdutos);
+
+        menuRelatorio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        menuRelatorio.setIcon(resourceMap.getIcon("menuRelatorio.icon")); // NOI18N
+        menuRelatorio.setText(resourceMap.getString("menuRelatorio.text")); // NOI18N
+        menuRelatorio.setName("menuRelatorio"); // NOI18N
+        jMenu9.add(menuRelatorio);
+
         menuBar.add(jMenu9);
 
         jMenu6.setIcon(resourceMap.getIcon("jMenu6.icon")); // NOI18N
@@ -965,6 +1003,25 @@ private void menuPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent e
     GerenciadorClientesApp.getApplication().show(pesquisarFornecedor);
     pesquisarFornecedor.setSize(947, 458);
 }//GEN-LAST:event_menuPesquisarFornecedorActionPerformed
+
+private void menuListaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListaProdutoActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    listarProduto = new ListaProdutos(mainFrame);
+    listarProduto.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(listarProduto);
+    listarProduto.setSize(653, 391);
+}//GEN-LAST:event_menuListaProdutoActionPerformed
+
+private void menuEntradaDeProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaDeProdutosActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    entradaDeProdutos = new EntradaProdutos(mainFrame);
+    entradaDeProdutos.setLocationRelativeTo(mainFrame);
+
+    GerenciadorClientesApp.getApplication().show(entradaDeProdutos);
+    entradaDeProdutos.setSize(1140, 615);
+}//GEN-LAST:event_menuEntradaDeProdutosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuBackupAuto;
     private javax.swing.JMenuItem MenuBackupHistorico;
@@ -1010,10 +1067,13 @@ private void menuPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent e
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuConfiguracao;
     private javax.swing.JMenuItem menuDespesa;
+    private javax.swing.JMenuItem menuEntradaDeProdutos;
     private javax.swing.JMenuItem menuFornecedoJuridico;
     private javax.swing.JMenuItem menuFornecedorFisico;
     private javax.swing.JMenu menuListaContas;
+    private javax.swing.JMenuItem menuListaProduto;
     private javax.swing.JMenuItem menuPesquisarFornecedor;
+    private javax.swing.JMenuItem menuRelatorio;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
@@ -1043,7 +1103,9 @@ private void menuPesquisarFornecedorActionPerformed(java.awt.event.ActionEvent e
     private JDialog listaContas;
     private JDialog fornecedorFisico;
     private JDialog fornecedorJuridico;
+    private JDialog entradaDeProdutos;
     private JDialog pesquisarFornecedor;
+    private JDialog listarProduto;
     private JDialog contaReceitaDespesaTransferencia;
 
     public void componentResized(ComponentEvent e) {
