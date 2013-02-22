@@ -27,7 +27,6 @@ public class AdicionarConta extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        btCancelar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,7 +41,9 @@ public class AdicionarConta extends javax.swing.JDialog {
         tfValor = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        btSalvar = new javax.swing.JButton();
+        btSalvar1 = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
+        btCancelar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Adicionar Conta");
@@ -50,24 +51,18 @@ public class AdicionarConta extends javax.swing.JDialog {
         jPanel1.setBackground(java.awt.Color.white);
         jPanel1.setLayout(null);
 
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Voltar.png"))); // NOI18N
+        jButton1.setMnemonic('v');
         jButton1.setText("Voltar");
+        jButton1.setToolTipText("Valor (Alt + V)");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(380, 310, 110, 30);
-
-        btCancelar.setText("Cancelar");
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btCancelar);
-        btCancelar.setBounds(640, 310, 90, 30);
+        jButton1.setBounds(250, 300, 110, 44);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(27, 56, 710, 10);
 
@@ -104,7 +99,7 @@ public class AdicionarConta extends javax.swing.JDialog {
         jPanel1.add(tfNumero);
         tfNumero.setBounds(290, 170, 233, 34);
 
-        painelData.setBackground(new java.awt.Color(255, 255, 255));
+        painelData.setBackground(java.awt.Color.lightGray);
         painelData.setPreferredSize(new java.awt.Dimension(200, 160));
 
         javax.swing.GroupLayout painelDataLayout = new javax.swing.GroupLayout(painelData);
@@ -128,21 +123,51 @@ public class AdicionarConta extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Data do Saldo de Abertura:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(540, 80, 180, 15);
+        jLabel6.setBounds(540, 80, 210, 15);
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Valor do Saldo de Abertura:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 220, 180, 15);
+        jLabel7.setBounds(30, 220, 240, 15);
 
-        btSalvar.setText("Salvar");
-        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+        btSalvar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btSalvar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/gravar.png"))); // NOI18N
+        btSalvar1.setMnemonic('s');
+        btSalvar1.setText("Salvar");
+        btSalvar1.setToolTipText("Salvar (Alt+S)");
+        btSalvar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btSalvarActionPerformed(evt);
+                btSalvar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btSalvar);
-        btSalvar.setBounds(520, 310, 90, 30);
+        jPanel1.add(btSalvar1);
+        btSalvar1.setBounds(380, 300, 110, 44);
+
+        btNovo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Novo.png"))); // NOI18N
+        btNovo.setMnemonic('n');
+        btNovo.setText("Novo");
+        btNovo.setToolTipText("Novo (Alt+N)");
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btNovo);
+        btNovo.setBounds(510, 300, 110, 44);
+
+        btCancelar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btCancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Cancelar.png"))); // NOI18N
+        btCancelar1.setMnemonic('c');
+        btCancelar1.setText("Cancelar");
+        btCancelar1.setToolTipText("Cancelar (Alt+C)");
+        btCancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btCancelar1);
+        btCancelar1.setBounds(640, 300, 110, 44);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
@@ -155,7 +180,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     listaConta.setVisible(true);
 }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+    private void btSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvar1ActionPerformed
         float valor = 0;
         try {
             valor = Converte.getInstance().converteTextoNumero(tfValor.getText());
@@ -167,23 +192,31 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Fachada.getInstance().criarConta(tfNome.getText(), tfBanco.getText(), tfAgencia.getText(), tfNumero.getText(), jcalendar.getCalendar(), valor);
             JOptionPane.showMessageDialog(null, "Conta Cadastrada.");
             listaConta.preecherJTableConta();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Existe uma conta com o mesmo nome.", "Atenção", 0);
         }
-    }//GEN-LAST:event_btSalvarActionPerformed
+    }//GEN-LAST:event_btSalvar1ActionPerformed
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        int op = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja concluir?", "Adicionar Conta", JOptionPane.YES_OPTION);
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        tfAgencia.setText("");
+        tfBanco.setText("");
+        tfNome.setText("");
+        tfNumero.setText("");
+        tfValor.setText("0");
+    }//GEN-LAST:event_btNovoActionPerformed
+
+    private void btCancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelar1ActionPerformed
+        int op = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja concluir?", "Cadastro de Fornecedor", JOptionPane.YES_OPTION);
 
         if (op == JOptionPane.YES_OPTION) {
-            listaConta.setVisible(true);
+            btNovoActionPerformed(evt);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_btCancelarActionPerformed
-
+    }//GEN-LAST:event_btCancelar1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btCancelar;
-    private javax.swing.JButton btSalvar;
+    private javax.swing.JButton btCancelar1;
+    private javax.swing.JButton btNovo;
+    private javax.swing.JButton btSalvar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -2,11 +2,15 @@ package GUI.Conta;
 
 import Entidade.Conta.Conta;
 import Fachada.Fachada;
+import GUI.PesquisaPessoa;
+import Util.Converte;
 import Util.JCalendar;
 import gerenciadorclientes.GerenciadorClientesApp;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,8 +18,19 @@ import javax.swing.JFrame;
  */
 public class TelaReceita extends javax.swing.JDialog {
 
-    private JCalendar jcalendar;
+    private JCalendar jcalendarReceita;
+    private JCalendar jcalendarDespesa;
     private JDialog adicionarPlanoConta;
+    private JDialog pesquisaPessoa;
+    private Long codigoReceber;
+    private String funcaoReceber;
+    private String nomeReceber;
+    private Long codigoPagar;
+    private String funcaoPagar;
+    private String nomePagar;
+    private static final int RECEITA = 1;
+    private static final int DESPESA = 2;
+    private ComboMenuBar cd;
 
     public TelaReceita(java.awt.Frame parent, int index) {
         super(parent);
@@ -31,14 +46,14 @@ public class TelaReceita extends javax.swing.JDialog {
      * painelDataDespesa.
      */
     private void calendario() {
-        jcalendar = new JCalendar();
-        jcalendar.setBounds(1, 1, painelData.getWidth(), painelData.getHeight());
-        painelData.add(jcalendar);
+        jcalendarReceita = new JCalendar();
+        jcalendarReceita.setBounds(1, 1, painelData.getWidth(), painelData.getHeight());
+        painelData.add(jcalendarReceita);
         pack();
 
-        JCalendar jcalendar2 = new JCalendar();
-        jcalendar2.setBounds(1, 1, painelDataDespesa.getWidth(), painelDataDespesa.getHeight());
-        painelDataDespesa.add(jcalendar2);
+        jcalendarDespesa = new JCalendar();
+        jcalendarDespesa.setBounds(1, 1, painelDataDespesa.getWidth(), painelDataDespesa.getHeight());
+        painelDataDespesa.add(jcalendarDespesa);
         pack();
     }
 
@@ -52,7 +67,6 @@ public class TelaReceita extends javax.swing.JDialog {
         painelConta = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         cbContaReceita = new javax.swing.JComboBox();
@@ -62,28 +76,31 @@ public class TelaReceita extends javax.swing.JDialog {
         painelData = new javax.swing.JPanel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        panelMenuReceita = new javax.swing.JPanel();
+        btCancelar = new javax.swing.JButton();
+        painelMenuReceita = new javax.swing.JPanel();
         btAddPlano = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
+        tfReceber = new javax.swing.JTextField();
+        btReceber = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cbContaDespesa = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tf_obs1 = new javax.swing.JTextArea();
+        tfObsDespesa = new javax.swing.JTextArea();
         painelDataDespesa = new javax.swing.JPanel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        panelMenuDespesa = new javax.swing.JPanel();
+        btSalvarDespesa = new javax.swing.JButton();
+        btCancelarDespesa = new javax.swing.JButton();
+        painelMenuDespesa = new javax.swing.JPanel();
         btAddPlanoContaDespesa = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        tfValorDespesa = new javax.swing.JTextField();
+        btPagar = new javax.swing.JButton();
+        tfPagar = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -131,11 +148,6 @@ public class TelaReceita extends javax.swing.JDialog {
         jLabel3.setText("Receber De:");
         jPanel2.add(jLabel3);
         jLabel3.setBounds(20, 80, 120, 15);
-
-        jComboBox1.setEditable(true);
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(20, 100, 278, 30);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Plano de Conta:");
@@ -185,13 +197,18 @@ public class TelaReceita extends javax.swing.JDialog {
         jPanel2.add(jButton1);
         jButton1.setBounds(360, 340, 90, 30);
 
-        jButton2.setText("Cancelar");
-        jPanel2.add(jButton2);
-        jButton2.setBounds(480, 340, 90, 30);
+        btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btCancelar);
+        btCancelar.setBounds(480, 340, 90, 30);
 
-        panelMenuReceita.setLayout(new java.awt.BorderLayout());
-        jPanel2.add(panelMenuReceita);
-        panelMenuReceita.setBounds(20, 160, 250, 30);
+        painelMenuReceita.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(painelMenuReceita);
+        painelMenuReceita.setBounds(20, 160, 250, 30);
 
         btAddPlano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/adicionar.png"))); // NOI18N
         btAddPlano.addActionListener(new java.awt.event.ActionListener() {
@@ -200,7 +217,7 @@ public class TelaReceita extends javax.swing.JDialog {
             }
         });
         jPanel2.add(btAddPlano);
-        btAddPlano.setBounds(270, 160, 30, 30);
+        btAddPlano.setBounds(270, 150, 40, 40);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
@@ -209,6 +226,19 @@ public class TelaReceita extends javax.swing.JDialog {
 
         jPanel2.add(jPanel3);
         jPanel3.setBounds(380, 230, 170, 70);
+
+        tfReceber.setEditable(false);
+        jPanel2.add(tfReceber);
+        tfReceber.setBounds(20, 100, 250, 30);
+
+        btReceber.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/2960_32x32.png"))); // NOI18N
+        btReceber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btReceberActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btReceber);
+        btReceber.setBounds(270, 90, 40, 40);
 
         painelConta.addTab(" Depósito", jPanel2);
 
@@ -219,11 +249,6 @@ public class TelaReceita extends javax.swing.JDialog {
         jLabel6.setText("Pagar Para:");
         jPanel6.add(jLabel6);
         jLabel6.setBounds(20, 80, 120, 15);
-
-        jComboBox2.setEditable(true);
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox2);
-        jComboBox2.setBounds(20, 100, 278, 30);
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Plano de Conta:");
@@ -243,9 +268,9 @@ public class TelaReceita extends javax.swing.JDialog {
         jPanel6.add(jLabel2);
         jLabel2.setBounds(330, 20, 90, 15);
 
-        tf_obs1.setColumns(20);
-        tf_obs1.setRows(5);
-        jScrollPane2.setViewportView(tf_obs1);
+        tfObsDespesa.setColumns(20);
+        tfObsDespesa.setRows(5);
+        jScrollPane2.setViewportView(tfObsDespesa);
 
         jPanel6.add(jScrollPane2);
         jScrollPane2.setBounds(320, 40, 280, 150);
@@ -269,17 +294,27 @@ public class TelaReceita extends javax.swing.JDialog {
         jPanel6.add(jFormattedTextField2);
         jFormattedTextField2.setBounds(745, 231, 162, 32);
 
-        jButton3.setText("Salvar");
-        jPanel6.add(jButton3);
-        jButton3.setBounds(360, 340, 90, 30);
+        btSalvarDespesa.setText("Salvar");
+        btSalvarDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarDespesaActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btSalvarDespesa);
+        btSalvarDespesa.setBounds(360, 340, 90, 30);
 
-        jButton4.setText("Cancelar");
-        jPanel6.add(jButton4);
-        jButton4.setBounds(480, 340, 90, 30);
+        btCancelarDespesa.setText("Cancelar");
+        btCancelarDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarDespesaActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btCancelarDespesa);
+        btCancelarDespesa.setBounds(480, 340, 90, 30);
 
-        panelMenuDespesa.setLayout(new java.awt.BorderLayout());
-        jPanel6.add(panelMenuDespesa);
-        panelMenuDespesa.setBounds(20, 160, 250, 30);
+        painelMenuDespesa.setLayout(new java.awt.BorderLayout());
+        jPanel6.add(painelMenuDespesa);
+        painelMenuDespesa.setBounds(20, 160, 250, 30);
 
         btAddPlanoContaDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/adicionar.png"))); // NOI18N
         btAddPlanoContaDespesa.addActionListener(new java.awt.event.ActionListener() {
@@ -288,15 +323,28 @@ public class TelaReceita extends javax.swing.JDialog {
             }
         });
         jPanel6.add(btAddPlanoContaDespesa);
-        btAddPlanoContaDespesa.setBounds(270, 160, 30, 30);
+        btAddPlanoContaDespesa.setBounds(270, 150, 40, 40);
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Valor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 12))); // NOI18N
         jPanel7.setLayout(new java.awt.BorderLayout());
-        jPanel7.add(jTextField2, java.awt.BorderLayout.CENTER);
+        jPanel7.add(tfValorDespesa, java.awt.BorderLayout.CENTER);
 
         jPanel6.add(jPanel7);
         jPanel7.setBounds(380, 230, 170, 70);
+
+        btPagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/2960_32x32.png"))); // NOI18N
+        btPagar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPagarActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btPagar);
+        btPagar.setBounds(270, 90, 40, 40);
+
+        tfPagar.setEditable(false);
+        jPanel6.add(tfPagar);
+        tfPagar.setBounds(20, 100, 250, 30);
 
         painelConta.addTab("Despesa", jPanel6);
 
@@ -306,7 +354,7 @@ public class TelaReceita extends javax.swing.JDialog {
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-665)/2, (screenSize.height-484)/2, 665, 484);
+        setBounds((screenSize.width-654)/2, (screenSize.height-484)/2, 654, 484);
     }// </editor-fold>//GEN-END:initComponents
 
 private void painelContaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_painelContaKeyPressed
@@ -332,6 +380,34 @@ private void painelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
         adicionarPlanoConta.setSize(486, 387);
         setVisible(false);
     }//GEN-LAST:event_btAddPlanoContaDespesaActionPerformed
+
+    private void btReceberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btReceberActionPerformed
+        pesquisarPessoa(RECEITA);
+    }//GEN-LAST:event_btReceberActionPerformed
+
+    private void btPagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPagarActionPerformed
+        pesquisarPessoa(DESPESA);
+    }//GEN-LAST:event_btPagarActionPerformed
+
+    private void btSalvarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarDespesaActionPerformed
+        float valor = 0;
+        valor = Converte.getInstance().converteTextoNumero(tfValorDespesa.getText());
+        if (valor != 0) {
+            if (null == Fachada.getInstance().criarFluxoDespesa("", valor, tfObsDespesa.getText(), Calendar.getInstance(), jcalendarDespesa.getCalendar(),
+                    Fachada.getInstance().pesquisarPessoa(codigoPagar, funcaoPagar), Fachada.getInstance().buscaItensPlanoConta(cd.getSelectedItem()), cbContaDespesa.getSelectedItem().toString())) {
+                JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar esta Despesa", "Atenção", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+        }
+    }//GEN-LAST:event_btSalvarDespesaActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+       
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void btCancelarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarDespesaActionPerformed
+        
+    }//GEN-LAST:event_btCancelarDespesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,14 +453,14 @@ private void painelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAddPlano;
     private javax.swing.JButton btAddPlanoContaDespesa;
+    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btCancelarDespesa;
+    private javax.swing.JButton btPagar;
+    private javax.swing.JButton btReceber;
+    private javax.swing.JButton btSalvarDespesa;
     private javax.swing.JComboBox cbContaDespesa;
     private javax.swing.JComboBox cbContaReceita;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
-    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
@@ -405,24 +481,27 @@ private void painelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTabbedPane painelConta;
     private javax.swing.JPanel painelData;
     private javax.swing.JPanel painelDataDespesa;
-    private javax.swing.JPanel panelMenuDespesa;
-    private javax.swing.JPanel panelMenuReceita;
+    private javax.swing.JPanel painelMenuDespesa;
+    private javax.swing.JPanel painelMenuReceita;
+    private javax.swing.JTextArea tfObsDespesa;
+    private javax.swing.JTextField tfPagar;
+    private javax.swing.JTextField tfReceber;
+    private javax.swing.JTextField tfValorDespesa;
     private javax.swing.JTextArea tf_obs;
-    private javax.swing.JTextArea tf_obs1;
     // End of variables declaration//GEN-END:variables
 
     public void menuComboBox() {
 
-       panelMenuDespesa.removeAll();
-        panelMenuDespesa.add(new ComboBoxMenu(false).getComboMenu());
-        panelMenuReceita.add(new ComboBoxMenu(true).getComboMenu());
-
+        painelMenuDespesa.removeAll();
+        painelMenuReceita.removeAll();
+        cd = new ComboBoxMenu(false).getComboMenu();
+        painelMenuDespesa.add(cd);
+        painelMenuReceita.add(new ComboBoxMenu(true).getComboMenu());
     }
-
+   
     private void tituloJanela() {
         if (painelConta.getSelectedIndex() == 0) {
             this.setTitle("Receita");
@@ -431,7 +510,7 @@ private void painelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
             this.setTitle("Despesa");
         }
         if (painelConta.getSelectedIndex() == 2) {
-            this.setTitle("transferência");
+            this.setTitle("Transferência");
         }
     }
 
@@ -447,5 +526,27 @@ private void painelContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
             cbContaDespesa.addItem(c.getNome());
             cbContaReceita.addItem(c.getNome());
         }
+    }
+
+    public void receberDe(Long id, String nome, String funcao) {
+        tfReceber.setText(nome);
+        this.codigoReceber = id;
+        this.nomeReceber = nome;
+        this.funcaoReceber = funcao;
+    }
+
+    public void pagarPara(Long id, String nome, String funcao) {
+        tfPagar.setText(nome);
+        this.codigoPagar = id;
+        this.nomeReceber = nome;
+        this.funcaoPagar = funcao;
+    }
+
+    private void pesquisarPessoa(int op) {
+        JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+        pesquisaPessoa = new PesquisaPessoa(mainFrame, this, op);
+        GerenciadorClientesApp.getApplication().show(pesquisaPessoa);
+        pesquisaPessoa.setSize(644, 350);
+        this.setVisible(false);
     }
 }

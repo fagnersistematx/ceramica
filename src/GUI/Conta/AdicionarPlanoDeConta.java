@@ -177,7 +177,8 @@ public class AdicionarPlanoDeConta extends javax.swing.JDialog {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (rbDespesa.isSelected() || rbReceita.isSelected()) {
-            if (!Fachada.getInstance().nomeExitentePlanoConta(tfNome.getName())) {
+            boolean cond = Fachada.getInstance().nomeExitentePlanoConta(tfNome.getName());
+            if (!cond == false) {
                 Fachada.getInstance().criarPlanoConta(tfNome.getText(), rbReceita.isSelected());
                 JOptionPane.showMessageDialog(null, "Plano de conta Cadastrado.");
                 preencheComboBoxConta();
@@ -195,7 +196,8 @@ public class AdicionarPlanoDeConta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar.\nPlano de Conta não foi encontrado.", "Atenção", 0);
                 return;
             }
-            if (!Fachada.getInstance().nomeExitenteItensPlanoConta(tfNome.getName())) {
+            boolean cond2 = Fachada.getInstance().nomeExitenteItensPlanoConta(tfNome.getName());
+            if (!cond2 == false) {
                 try {
                     List<ItensPlanoConta> itensPlanoContas = planoConta.getItensPlanoContas();
                     if (itensPlanoContas == null) {
@@ -214,7 +216,7 @@ public class AdicionarPlanoDeConta extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Não foi possivel cadastrar.\nExiste uma sub-categoria do Plano de Conta "
                         + "selecionado com o mesmo nome.", "Atenção", 0);
                 return;
-            }            
+            }
         }
         telaReceita.menuComboBox();
     }//GEN-LAST:event_btSalvarActionPerformed
