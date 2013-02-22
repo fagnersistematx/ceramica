@@ -1,19 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * Pesquisa.java
- *
- * Created on 11/06/2012, 22:01:56
- */
 package GUI;
 
 import Controler.ControleCliente;
 import Entidade.Cliente;
 import GUI.Atualizar.AtualizarClienteFisico;
 import GUI.Atualizar.AtualizarClienteJuridico;
+import GUI.Estoque.CadastrarPedido;
 import Util.Config;
 import gerenciadorclientes.GerenciadorClientesApp;
 import java.awt.KeyboardFocusManager;
@@ -36,6 +27,7 @@ public class Pesquisa extends javax.swing.JDialog {
     private JDialog pesquisarMaquina;
     private JDialog cadastroOrcamento;
     private JDialog pesquisarOrcamento;
+    private JDialog cadastrarPedido;
     private JDialog atualizarDadosCliente;
     private JDialog atualizarDadosClienteJuridico;
     private List<Cliente> clientes;
@@ -52,6 +44,8 @@ public class Pesquisa extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.preecherJTableCliente(1);
         this.jtCliente.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
+        meMaquina.setVisible(false);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -73,6 +67,9 @@ public class Pesquisa extends javax.swing.JDialog {
         MenuAtualizarDadosCliente = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
+        MenuCadastraPedido = new javax.swing.JMenuItem();
+        menuPesquisarPedidos = new javax.swing.JMenuItem();
+        meMaquina = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -201,9 +198,12 @@ public class Pesquisa extends javax.swing.JDialog {
         jMenuBar1.setName("jMenuBar1"); // NOI18N
 
         jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
+        jMenu2.setFont(resourceMap.getFont("meMaquina.font")); // NOI18N
         jMenu2.setName("jMenu2"); // NOI18N
 
         MenuAtualizarDadosCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        MenuAtualizarDadosCliente.setFont(resourceMap.getFont("jMenuItem6.font")); // NOI18N
+        MenuAtualizarDadosCliente.setIcon(resourceMap.getIcon("MenuAtualizarDadosCliente.icon")); // NOI18N
         MenuAtualizarDadosCliente.setText(resourceMap.getString("MenuAtualizarDadosCliente.text")); // NOI18N
         MenuAtualizarDadosCliente.setName("MenuAtualizarDadosCliente"); // NOI18N
         MenuAtualizarDadosCliente.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +214,7 @@ public class Pesquisa extends javax.swing.JDialog {
         jMenu2.add(MenuAtualizarDadosCliente);
 
         jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setFont(resourceMap.getFont("jMenuItem6.font")); // NOI18N
         jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
         jMenuItem6.setName("jMenuItem6"); // NOI18N
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -226,9 +227,36 @@ public class Pesquisa extends javax.swing.JDialog {
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
+        jMenu1.setFont(resourceMap.getFont("meMaquina.font")); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
+        MenuCadastraPedido.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.ALT_MASK));
+        MenuCadastraPedido.setFont(resourceMap.getFont("MenuCadastraPedido.font")); // NOI18N
+        MenuCadastraPedido.setIcon(resourceMap.getIcon("MenuCadastraPedido.icon")); // NOI18N
+        MenuCadastraPedido.setText(resourceMap.getString("MenuCadastraPedido.text")); // NOI18N
+        MenuCadastraPedido.setName("MenuCadastraPedido"); // NOI18N
+        MenuCadastraPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCadastraPedidoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(MenuCadastraPedido);
+
+        menuPesquisarPedidos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.ALT_MASK));
+        menuPesquisarPedidos.setFont(resourceMap.getFont("jMenuItem3.font")); // NOI18N
+        menuPesquisarPedidos.setIcon(resourceMap.getIcon("menuPesquisarPedidos.icon")); // NOI18N
+        menuPesquisarPedidos.setText(resourceMap.getString("menuPesquisarPedidos.text")); // NOI18N
+        menuPesquisarPedidos.setName("menuPesquisarPedidos"); // NOI18N
+        jMenu1.add(menuPesquisarPedidos);
+
+        jMenuBar1.add(jMenu1);
+
+        meMaquina.setText(resourceMap.getString("meMaquina.text")); // NOI18N
+        meMaquina.setFont(resourceMap.getFont("meMaquina.font")); // NOI18N
+        meMaquina.setName("meMaquina"); // NOI18N
+
         jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setFont(resourceMap.getFont("jMenuItem1.font")); // NOI18N
         jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
         jMenuItem4.setName("jMenuItem4"); // NOI18N
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -236,9 +264,10 @@ public class Pesquisa extends javax.swing.JDialog {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        meMaquina.add(jMenuItem4);
 
         jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setFont(resourceMap.getFont("jMenuItem1.font")); // NOI18N
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -246,14 +275,16 @@ public class Pesquisa extends javax.swing.JDialog {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        meMaquina.add(jMenuItem1);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(meMaquina);
 
         jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
+        jMenu3.setFont(resourceMap.getFont("meMaquina.font")); // NOI18N
         jMenu3.setName("jMenu3"); // NOI18N
 
         jMenuItem7.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem7.setFont(resourceMap.getFont("jMenuItem8.font")); // NOI18N
         jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
         jMenuItem7.setName("jMenuItem7"); // NOI18N
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -264,6 +295,7 @@ public class Pesquisa extends javax.swing.JDialog {
         jMenu3.add(jMenuItem7);
 
         jMenuItem8.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItem8.setFont(resourceMap.getFont("jMenuItem8.font")); // NOI18N
         jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
         jMenuItem8.setName("jMenuItem8"); // NOI18N
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -328,10 +360,10 @@ private void jtClienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             jtClienteMouseClicked(null);
         }
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-           if(tab % 2 == 0){
-               jtCliente.transferFocus();
-           }
-           tab++;
+            if (tab % 2 == 0) {
+                jtCliente.transferFocus();
+            }
+            tab++;
         }
     } catch (Exception erro) {
     }
@@ -407,23 +439,32 @@ private void pesquisarCpfKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_pesquisarCpfKeyPressed
 
 private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-  //  try {
-        if (Config.getCliente() != null) {
-            JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
-            pesquisarOrcamento = new PesquisarOrcamento(mainFrame, this);
+    //  try {
+    if (Config.getCliente() != null) {
+        JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+        pesquisarOrcamento = new PesquisarOrcamento(mainFrame, this);
 
-            GerenciadorClientesApp.getApplication().show(pesquisarOrcamento);
-            pesquisarOrcamento.setSize(931, 393);
-            setVisible(false);
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um cliente.", "Atenção", 0);
-        }
-   // } catch (Exception erro) {
+        GerenciadorClientesApp.getApplication().show(pesquisarOrcamento);
+        pesquisarOrcamento.setSize(931, 393);
+        setVisible(false);
+    } else {
+        JOptionPane.showMessageDialog(null, "Selecione um cliente.", "Atenção", 0);
+    }
+    // } catch (Exception erro) {
     //    JOptionPane.showMessageDialog(null, "Não existe orçamento.", "Atenção", 0);
-   // }
+    // }
 }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+private void MenuCadastraPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCadastraPedidoActionPerformed
+    JFrame mainFrame = GerenciadorClientesApp.getApplication().getMainFrame();
+    cadastrarPedido = new CadastrarPedido(mainFrame, this);
+    GerenciadorClientesApp.getApplication().show(cadastrarPedido);
+    cadastrarPedido.setSize(931, 393);
+    setVisible(false);
+}//GEN-LAST:event_MenuCadastraPedidoActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem MenuAtualizarDadosCliente;
+    private javax.swing.JMenuItem MenuCadastraPedido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -441,6 +482,8 @@ private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtCliente;
     private javax.swing.JLabel lbQuantCliente;
+    private javax.swing.JMenu meMaquina;
+    private javax.swing.JMenuItem menuPesquisarPedidos;
     private javax.swing.JFormattedTextField pesquisarCpf;
     private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
