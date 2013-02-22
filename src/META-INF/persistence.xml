@@ -4,10 +4,20 @@
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>Entidade.Conta.Receita</class>
     <class>Entidade.Conta.Despesa</class>
-    <class>Entidade.Conta.Lancamento</class>
     <class>Entidade.Conta.Conta</class>
     <class>Entidade.Conta.PlanoConta</class>
     <class>Entidade.Conta.ItensPlanoConta</class>
+    <class>Entidade.Backup</class>
+    <class>Entidade.Cliente</class>
+    <class>Entidade.Configuracao</class>
+    <class>Entidade.Endereco</class>
+    <class>Entidade.Fornecedor</class>
+    <class>Entidade.Funcionario</class>
+    <class>Entidade.Itens</class>
+    <class>Entidade.Maquina</class>
+    <class>Entidade.Orcamento</class>
+    <class>Entidade.Servico</class>
+    <class>Entidade.Estoque.Nota</class>
     <properties>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
